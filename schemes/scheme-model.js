@@ -18,9 +18,23 @@ function findSteps(id) {
     .orderBy('step_number')
 }
 
+// SELECT Steps.id, Schemes.scheme_name, Steps.step_number, Steps.instructions
+// FROM Steps
+// JOIN Schemes on Steps.scheme_id = Schemes.id
+// where Schemes.id = ''
+// order by step_number;
+
+function add(scheme) {
+    return db('schemes')
+    .insert(scheme)
+    .then(ids => findById(ids[0]))
+}
+// INSERT INTO Schemes (id, scheme_name)
+// VALUES (null, 'Write SQL Queries');
 
 module.exports = {
     find,
     findById,
-    findSteps
+    findSteps,
+    add
 };
