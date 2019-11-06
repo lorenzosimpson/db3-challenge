@@ -43,10 +43,20 @@ function update(changes, id) {
 // SET scheme_name = 'Do Some Stuff'
 // WHERE id = '10';
 
+function remove(id) {
+    return db('schemes')
+        .del()
+        .where({ id: id})
+        .then(deleted => deleted)
+}
+// DELETE FROM Schemes 
+// WHERE id = '10';
+
 module.exports = {
     find,
     findById,
     findSteps,
     add,
-    update
+    update,
+    remove
 };
