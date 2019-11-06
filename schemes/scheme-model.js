@@ -32,9 +32,21 @@ function add(scheme) {
 // INSERT INTO Schemes (id, scheme_name)
 // VALUES (null, 'Write SQL Queries');
 
+function update(changes, id) {
+    return db('schemes')
+    .update(changes)
+    .where({ id: id})
+    .then(() => findById(id))
+}
+
+// UPDATE Schemes
+// SET scheme_name = 'Do Some Stuff'
+// WHERE id = '10';
+
 module.exports = {
     find,
     findById,
     findSteps,
-    add
+    add,
+    update
 };
