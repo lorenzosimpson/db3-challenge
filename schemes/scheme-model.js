@@ -44,9 +44,10 @@ function update(changes, id) {
 // WHERE id = '10';
 
 function remove(id) {
+    const toDelete = findById(id)
     return db('schemes')
-        .del()
         .where({ id: id})
+        .del()
         .then(deleted => deleted)
 }
 // DELETE FROM Schemes 
