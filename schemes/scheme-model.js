@@ -43,12 +43,16 @@ function update(changes, id) {
 // SET scheme_name = 'Do Some Stuff'
 // WHERE id = '10';
 
-function remove(id) {
-    const toDelete = findById(id)
-    return db('schemes')
-        .where({ id: id})
-        .del()
-        .then(deleted => deleted)
+// function remove(id) {
+//     return db('schemes')
+//         .where({ id: id})
+//         .del()
+//         .then(deleted => deleted ? deleted : null)
+// }
+
+async function remove(id) {
+    const scheme = await findById(id)
+    return db('schemes').where({id}).del().then(() => scheme)
 }
 // DELETE FROM Schemes 
 // WHERE id = '10';
